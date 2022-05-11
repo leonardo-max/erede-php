@@ -18,7 +18,7 @@ Se já possui um arquivo `composer.json`, basta adicionar a seguinte dependênci
 ```json
 {
 "require": {
-    "developersrede/erede-php": "*"
+    "leonardo-max/erede-php": "*"
 }
 }
 
@@ -33,7 +33,7 @@ composer install
 Alternativamente, você pode executar diretamente em seu terminal:
 
 ```
-composer require "developersrede/erede-php"
+composer require "leonardo-max/erede-php"
 ```
 
 # Testes

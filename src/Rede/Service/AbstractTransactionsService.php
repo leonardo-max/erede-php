@@ -95,7 +95,7 @@ abstract class AbstractTransactionsService extends AbstractService
         } catch (InvalidArgumentException $e) {
             $previous = $e;
         }
-
+        /*
         if ((int)$statusCode >= 400) {
             throw new RedeException(
                 $this->transaction->getReturnMessage(),
@@ -103,7 +103,7 @@ abstract class AbstractTransactionsService extends AbstractService
                 $previous
             );
         }
-
+        */
         return $this->transaction;
     }
 }

@@ -12,6 +12,12 @@ use RuntimeException;
 
 abstract class AbstractService
 {
+    /** Segundos para abrir a conexão com a Rede. */
+    public const CONNECT_TIMEOUT = 10;
+
+    /** Segundos para a requisição inteira, resposta incluída. */
+    public const TIMEOUT = 30;
+
     const GET = 'GET';
     const POST = 'POST';
     const PUT = 'PUT';
@@ -150,6 +156,11 @@ abstract class AbstractService
 
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->curl, CURLOPT_HTTPHEADER, $headers);
+
+        // Sem limite, uma resposta perdida deixa o PHP pendurado até o servidor web
+        // matar o processo, e quem chamou nunca recebe a exceção para tratar.
+        curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, self::CONNECT_TIMEOUT);
+        curl_setopt($this->curl, CURLOPT_TIMEOUT, self::TIMEOUT);
 
         if ($this->logger !== null) {
             $this->logger->debug(
